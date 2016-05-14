@@ -6,7 +6,8 @@ var eventosController = require('./controllers/eventosController.js'),
 var express       = require('express'),
       app              = express(),
       server          = require('http').createServer(app),
-      port              = 9000;
+      port              = 9000,
+      env               =process.env;
 //-------------------------------------------------------------------------
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -180,6 +181,6 @@ app.put('/api/carrera/usuarios/admin', usuariosController.hacerAdmin);
 
  
 
-server.listen(port, function(){
+server.listen(env.NODE_PORT || port, env.NODE_IP || 'localhost',  function(){
   console.log('Server listening on port: ' + port);
 });
